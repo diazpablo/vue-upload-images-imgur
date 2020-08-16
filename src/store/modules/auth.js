@@ -1,4 +1,5 @@
 import qs from 'qs';
+import { router } from '@/main'
 import api from '@/api/imgur';
 
 const state = {
@@ -13,8 +14,10 @@ const actions = {
 	login: () => api.login(),
 	finalizeLogin: ({ commit }, hash) => {
 		const { access_token } = qs.parse(hash.replace('#', ''));
+
 		commit('setToken', access_token);
 		window.localStorage.setItem('imgur_token', access_token);
+		router.push('/');
 	},
 	logout: ({ commit }) => {
 		commit('setToken', null);
