@@ -4,7 +4,19 @@
 			Image Storage
 		</a>
 		<div class="right menu">
-			<a class="ui item" @click="login">
+			<div v-if="isLoggedIn" class="horizontal">
+				<router-link class="ui item" to="/">
+					Gallery
+				</router-link>
+				<router-link class="ui item" to="/upload">
+					Upload Image
+				</router-link>
+				<a class="ui item" @click="logout">
+					Logout
+				</a>
+			</div>
+			
+			<a v-else class="ui item" @click="login">
 				Login
 			</a>
 		</div>
@@ -12,14 +24,17 @@
 </template>
 
 <script>
-	import { mapActions } from 'vuex';
+	import { mapActions, mapGetters } from 'vuex';
 	
 	export default {
 		name: "Header",
-		methods: mapActions([ 'login' ])
+		computed: mapGetters([ 'isLoggedIn' ]),
+		methods: mapActions([ 'login', 'logout' ])
 	}
 </script>
 
 <style scoped>
-
+	.horizontal {
+		display: flex;
+	}
 </style>
