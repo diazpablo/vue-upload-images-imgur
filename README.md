@@ -1,5 +1,8 @@
 # images
 
+## Testing environmnet (Netlify)
+https://vue-imgur-testing.netlify.app/
+
 ## Project setup
 ```
 npm install
