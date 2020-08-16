@@ -12,8 +12,11 @@
 </template>
 
 <script>
+	import { mapActions } from 'vuex';
+	
 	export default {
 		name: "Header",
+		methods: mapActions([ 'login' ])
 	}
 </script>
 
