@@ -1,7 +1,9 @@
 <template>
 	<div>
 		<Header />
-		<router-view />
+		<div class="ui container">
+			<router-view />
+		</div>
 	</div>
 </template>
 

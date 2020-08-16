@@ -5,6 +5,7 @@ const BASE_URL = 'https://api.imgur.com';
 const CLIENT_ID = process.env.VUE_APP_CLIENT_ID;
 const LOGIN_PATH = '/oauth2/authorize';
 const GET_IMAGES_PATH = '/3/account/me/images';
+const UPLOAD_IMAGE_PATH = '/3/upload';
 
 export default {
 	login() {
@@ -21,5 +22,19 @@ export default {
 				Authorization: `Bearer ${token}`
 			}
 		});
+	},
+	uploadImages(images, token) {
+		const promises = Array.from(images).map(image => {
+			const formData = new FormData();
+			formData.append('image', image);
+
+			return axios.post(`${BASE_URL}${UPLOAD_IMAGE_PATH}`, formData, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				}
+			});
+		});
+
+		return Promise.all(promises);
 	}
 };
